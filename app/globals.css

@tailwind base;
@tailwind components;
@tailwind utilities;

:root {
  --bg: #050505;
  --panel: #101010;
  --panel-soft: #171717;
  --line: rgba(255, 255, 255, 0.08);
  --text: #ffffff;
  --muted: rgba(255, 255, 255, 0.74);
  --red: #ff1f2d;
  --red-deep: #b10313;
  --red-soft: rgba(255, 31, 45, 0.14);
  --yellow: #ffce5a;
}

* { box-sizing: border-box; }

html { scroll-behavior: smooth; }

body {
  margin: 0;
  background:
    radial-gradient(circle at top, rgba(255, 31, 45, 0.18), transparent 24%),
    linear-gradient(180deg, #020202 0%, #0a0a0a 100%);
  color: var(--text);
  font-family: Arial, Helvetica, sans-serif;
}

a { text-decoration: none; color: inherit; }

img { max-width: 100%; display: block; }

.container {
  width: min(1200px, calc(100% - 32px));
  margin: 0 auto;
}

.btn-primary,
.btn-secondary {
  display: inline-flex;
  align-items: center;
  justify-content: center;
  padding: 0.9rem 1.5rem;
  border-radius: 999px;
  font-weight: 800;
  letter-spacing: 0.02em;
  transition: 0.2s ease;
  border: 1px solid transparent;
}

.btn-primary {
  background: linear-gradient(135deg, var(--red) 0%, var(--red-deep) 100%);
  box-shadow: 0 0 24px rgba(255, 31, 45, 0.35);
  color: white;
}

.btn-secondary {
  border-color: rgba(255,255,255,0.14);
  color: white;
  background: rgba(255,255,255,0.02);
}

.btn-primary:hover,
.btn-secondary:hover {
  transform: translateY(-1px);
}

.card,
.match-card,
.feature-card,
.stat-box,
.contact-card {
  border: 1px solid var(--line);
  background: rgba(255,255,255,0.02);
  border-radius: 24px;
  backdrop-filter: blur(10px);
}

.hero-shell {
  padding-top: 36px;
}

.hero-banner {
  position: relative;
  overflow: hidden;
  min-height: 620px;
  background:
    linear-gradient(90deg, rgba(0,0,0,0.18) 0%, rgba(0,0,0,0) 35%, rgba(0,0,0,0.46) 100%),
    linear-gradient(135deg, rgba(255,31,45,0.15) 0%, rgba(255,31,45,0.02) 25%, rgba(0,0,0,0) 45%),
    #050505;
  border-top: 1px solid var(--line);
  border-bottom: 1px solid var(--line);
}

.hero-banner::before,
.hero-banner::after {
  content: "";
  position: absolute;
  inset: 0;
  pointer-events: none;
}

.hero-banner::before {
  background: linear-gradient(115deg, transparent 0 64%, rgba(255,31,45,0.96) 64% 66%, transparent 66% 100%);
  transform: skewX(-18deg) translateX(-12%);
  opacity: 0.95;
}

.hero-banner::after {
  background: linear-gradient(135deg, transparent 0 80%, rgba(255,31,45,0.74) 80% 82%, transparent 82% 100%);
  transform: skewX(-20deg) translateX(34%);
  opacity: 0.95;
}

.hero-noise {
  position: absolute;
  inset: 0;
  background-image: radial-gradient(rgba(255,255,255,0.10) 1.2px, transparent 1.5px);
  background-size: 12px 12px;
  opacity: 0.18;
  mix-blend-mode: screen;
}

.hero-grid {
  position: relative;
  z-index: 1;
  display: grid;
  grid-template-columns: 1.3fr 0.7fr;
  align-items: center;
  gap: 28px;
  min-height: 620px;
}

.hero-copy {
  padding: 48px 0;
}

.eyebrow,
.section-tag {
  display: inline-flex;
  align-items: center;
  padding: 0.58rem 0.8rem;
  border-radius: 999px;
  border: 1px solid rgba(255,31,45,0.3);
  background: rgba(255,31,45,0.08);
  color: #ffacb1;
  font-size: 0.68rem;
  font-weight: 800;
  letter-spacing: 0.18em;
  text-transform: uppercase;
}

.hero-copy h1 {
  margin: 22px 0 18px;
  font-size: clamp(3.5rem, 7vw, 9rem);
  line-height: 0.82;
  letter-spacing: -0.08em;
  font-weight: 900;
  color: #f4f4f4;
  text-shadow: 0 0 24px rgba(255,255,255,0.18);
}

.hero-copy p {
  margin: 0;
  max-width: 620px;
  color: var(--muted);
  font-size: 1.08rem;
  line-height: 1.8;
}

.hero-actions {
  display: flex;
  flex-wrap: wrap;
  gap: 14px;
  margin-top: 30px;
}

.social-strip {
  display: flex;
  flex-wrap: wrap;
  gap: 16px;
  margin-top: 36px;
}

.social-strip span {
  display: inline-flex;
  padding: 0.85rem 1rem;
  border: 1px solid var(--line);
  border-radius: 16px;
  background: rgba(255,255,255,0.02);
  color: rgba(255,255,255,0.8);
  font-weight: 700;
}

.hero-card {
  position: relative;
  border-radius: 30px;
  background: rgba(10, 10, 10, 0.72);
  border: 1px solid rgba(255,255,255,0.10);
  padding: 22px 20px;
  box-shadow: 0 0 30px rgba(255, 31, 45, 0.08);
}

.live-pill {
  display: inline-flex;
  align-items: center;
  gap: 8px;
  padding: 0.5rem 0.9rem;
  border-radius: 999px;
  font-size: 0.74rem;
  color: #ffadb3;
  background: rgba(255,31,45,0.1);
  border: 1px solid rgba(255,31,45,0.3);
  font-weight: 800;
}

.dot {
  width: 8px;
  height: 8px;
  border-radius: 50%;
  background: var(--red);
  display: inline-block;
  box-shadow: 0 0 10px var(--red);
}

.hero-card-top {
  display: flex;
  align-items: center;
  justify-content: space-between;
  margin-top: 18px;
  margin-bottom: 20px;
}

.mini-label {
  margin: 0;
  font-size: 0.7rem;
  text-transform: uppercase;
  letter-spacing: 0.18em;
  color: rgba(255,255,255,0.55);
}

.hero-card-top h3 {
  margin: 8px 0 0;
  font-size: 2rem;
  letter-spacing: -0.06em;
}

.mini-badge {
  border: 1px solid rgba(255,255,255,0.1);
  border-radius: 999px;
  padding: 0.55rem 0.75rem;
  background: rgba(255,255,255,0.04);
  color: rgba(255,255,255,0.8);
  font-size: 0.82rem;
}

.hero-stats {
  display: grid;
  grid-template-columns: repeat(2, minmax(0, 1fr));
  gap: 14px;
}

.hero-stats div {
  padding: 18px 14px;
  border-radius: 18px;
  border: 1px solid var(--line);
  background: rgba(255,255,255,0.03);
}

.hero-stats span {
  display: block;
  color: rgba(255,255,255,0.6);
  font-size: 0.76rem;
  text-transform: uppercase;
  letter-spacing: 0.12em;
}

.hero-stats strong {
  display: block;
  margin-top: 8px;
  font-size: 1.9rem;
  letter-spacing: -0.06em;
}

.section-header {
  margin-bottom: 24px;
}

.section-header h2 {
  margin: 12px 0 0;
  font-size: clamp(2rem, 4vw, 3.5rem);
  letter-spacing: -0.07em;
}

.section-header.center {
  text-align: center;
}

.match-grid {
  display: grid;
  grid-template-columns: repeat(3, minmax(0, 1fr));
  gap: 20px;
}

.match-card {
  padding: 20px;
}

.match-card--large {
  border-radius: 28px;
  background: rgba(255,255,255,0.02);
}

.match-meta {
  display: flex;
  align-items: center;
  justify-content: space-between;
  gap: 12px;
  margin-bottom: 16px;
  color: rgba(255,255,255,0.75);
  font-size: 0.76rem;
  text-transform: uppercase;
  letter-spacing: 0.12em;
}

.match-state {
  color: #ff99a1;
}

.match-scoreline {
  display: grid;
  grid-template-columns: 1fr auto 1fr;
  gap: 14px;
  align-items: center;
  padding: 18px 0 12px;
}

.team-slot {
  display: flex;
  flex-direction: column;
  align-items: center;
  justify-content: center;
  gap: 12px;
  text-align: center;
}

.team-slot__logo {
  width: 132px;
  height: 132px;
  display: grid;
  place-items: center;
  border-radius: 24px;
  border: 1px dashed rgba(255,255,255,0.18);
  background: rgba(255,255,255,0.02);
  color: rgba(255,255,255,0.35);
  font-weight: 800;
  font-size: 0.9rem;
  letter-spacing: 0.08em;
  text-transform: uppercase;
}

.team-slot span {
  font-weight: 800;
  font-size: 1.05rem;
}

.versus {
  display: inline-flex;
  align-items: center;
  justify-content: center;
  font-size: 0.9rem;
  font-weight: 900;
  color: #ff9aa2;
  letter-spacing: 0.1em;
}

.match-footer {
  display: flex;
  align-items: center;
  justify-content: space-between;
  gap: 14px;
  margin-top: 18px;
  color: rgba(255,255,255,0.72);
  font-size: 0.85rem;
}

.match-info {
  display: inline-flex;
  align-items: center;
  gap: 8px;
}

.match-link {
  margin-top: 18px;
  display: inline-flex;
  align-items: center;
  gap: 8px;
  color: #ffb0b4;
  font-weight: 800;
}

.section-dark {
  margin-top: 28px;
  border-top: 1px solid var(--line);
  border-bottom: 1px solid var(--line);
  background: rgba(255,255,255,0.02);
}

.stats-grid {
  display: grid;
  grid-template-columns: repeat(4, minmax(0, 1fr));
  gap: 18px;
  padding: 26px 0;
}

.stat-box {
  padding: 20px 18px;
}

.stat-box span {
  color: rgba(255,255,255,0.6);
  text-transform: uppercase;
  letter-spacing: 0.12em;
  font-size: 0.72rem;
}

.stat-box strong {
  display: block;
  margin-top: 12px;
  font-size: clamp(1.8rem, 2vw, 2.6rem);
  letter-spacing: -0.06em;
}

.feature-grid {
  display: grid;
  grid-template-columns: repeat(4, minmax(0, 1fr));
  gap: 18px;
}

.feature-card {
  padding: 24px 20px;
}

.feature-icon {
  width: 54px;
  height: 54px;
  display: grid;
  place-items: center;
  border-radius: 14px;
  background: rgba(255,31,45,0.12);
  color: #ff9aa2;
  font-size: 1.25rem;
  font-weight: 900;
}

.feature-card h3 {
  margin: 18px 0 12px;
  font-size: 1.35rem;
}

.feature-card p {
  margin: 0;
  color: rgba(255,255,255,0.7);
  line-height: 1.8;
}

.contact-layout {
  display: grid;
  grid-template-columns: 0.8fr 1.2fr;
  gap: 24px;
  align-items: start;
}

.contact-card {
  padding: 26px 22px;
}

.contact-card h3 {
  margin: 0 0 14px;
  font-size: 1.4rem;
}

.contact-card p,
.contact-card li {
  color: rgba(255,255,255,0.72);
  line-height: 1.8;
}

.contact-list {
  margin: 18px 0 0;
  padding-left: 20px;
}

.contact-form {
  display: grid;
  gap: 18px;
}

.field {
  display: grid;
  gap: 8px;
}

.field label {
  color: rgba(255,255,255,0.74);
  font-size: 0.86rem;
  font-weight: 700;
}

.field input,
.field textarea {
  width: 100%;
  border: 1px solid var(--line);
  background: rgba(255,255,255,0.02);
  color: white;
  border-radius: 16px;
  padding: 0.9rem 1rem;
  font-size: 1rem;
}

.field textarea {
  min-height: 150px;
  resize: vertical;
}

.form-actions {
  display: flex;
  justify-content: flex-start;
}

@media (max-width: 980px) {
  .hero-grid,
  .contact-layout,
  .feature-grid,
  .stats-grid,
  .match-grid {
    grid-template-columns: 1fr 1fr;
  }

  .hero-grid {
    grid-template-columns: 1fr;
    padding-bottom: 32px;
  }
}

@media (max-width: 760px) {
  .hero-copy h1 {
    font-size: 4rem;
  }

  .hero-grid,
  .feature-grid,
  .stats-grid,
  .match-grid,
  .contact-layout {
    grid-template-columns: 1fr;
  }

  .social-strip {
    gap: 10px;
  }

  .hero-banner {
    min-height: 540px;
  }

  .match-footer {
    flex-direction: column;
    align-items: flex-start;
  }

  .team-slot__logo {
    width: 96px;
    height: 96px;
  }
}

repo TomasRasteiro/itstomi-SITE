@@ -1,0 +1,166 @@
+import Link from "next/link";
+import { ArrowRight, CalendarRange, ExternalLink, MapPin } from "lucide-react";
+import { games } from "@/lib/games";
+
+export default function HomePage() {
+  const upcoming = games.slice(0, 3);
+
+  return (
+    <>
+      <section className="hero-shell">
+        <div className="hero-banner">
+          <div className="hero-noise" />
+          <div className="container hero-grid">
+            <div className="hero-copy">
+              <span className="eyebrow">Streamer • Creator • Caster</span>
+              <h1>ITS TOMI TV</h1>
+              <p>
+                Gaming, esports, conteúdo em direto e presença digital com identidade forte,
+                energia e muita competitividade.
+              </p>
+
+              <div className="hero-actions">
+                <Link href="/stream" className="btn-primary">Ver stream</Link>
+                <Link href="/jogos" className="btn-secondary">Ver jogos</Link>
+              </div>
+
+              <div className="social-strip">
+                <span>Twitch</span>
+                <span>CS2</span>
+                <span>Esports</span>
+                <span>Conteúdo</span>
+              </div>
+            </div>
+
+            <div className="hero-card">
+              <div className="live-pill">
+                <span className="dot" /> LIVE
+              </div>
+
+              <div className="hero-card-top">
+                <div>
+                  <p className="mini-label">Canal principal</p>
+                  <h3>ItsTomi</h3>
+                </div>
+                <div className="mini-badge">24/7</div>
+              </div>
+
+              <div className="hero-stats">
+                <div>
+                  <span>Peak</span>
+                  <strong>31.4K</strong>
+                </div>
+                <div>
+                  <span>Seguidores</span>
+                  <strong>42.4K</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container py-16">
+        <div className="section-header">
+          <p className="section-tag">Próximos jogos</p>
+          <h2>Agenda competitiva</h2>
+        </div>
+
+        <div className="match-grid future-grid">
+          {upcoming.map((game) => (
+            <article key={game.id} className="match-card match-card--large">
+              <div className="match-meta">
+                <span>{game.torneio}</span>
+                <span className="match-state">{game.status}</span>
+              </div>
+
+              <div className="match-scoreline">
+                <div className="team-slot">
+                  <div className="team-slot__logo">LOGO 1</div>
+                  <span>{game.equipa1}</span>
+                </div>
+
+                <div className="versus">VS</div>
+
+                <div className="team-slot">
+                  <div className="team-slot__logo">LOGO 2</div>
+                  <span>{game.equipa2}</span>
+                </div>
+              </div>
+
+              <div className="match-footer">
+                <div className="match-info">
+                  <CalendarRange size={16} />
+                  <span>{game.data} • {game.hora}</span>
+                </div>
+                <div className="match-info">
+                  <MapPin size={16} />
+                  <span>Online</span>
+                </div>
+              </div>
+
+              <a href={game.link} target="_blank" rel="noreferrer" className="match-link">
+                Ver transmissão <ExternalLink size={15} />
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-dark">
+        <div className="container stats-grid">
+          <div className="stat-box">
+            <span>Visualizações</span>
+            <strong>24.8K</strong>
+          </div>
+          <div className="stat-box">
+            <span>Seguidores</span>
+            <strong>42.4K</strong>
+          </div>
+          <div className="stat-box">
+            <span>Jogos</span>
+            <strong>12+</strong>
+          </div>
+          <div className="stat-box">
+            <span>Engajamento</span>
+            <strong>92%</strong>
+          </div>
+        </div>
+      </section>
+
+      <section className="container py-20">
+        <div className="section-header center">
+          <p className="section-tag">A marca</p>
+          <h2>Mais do que um canal de gaming</h2>
+        </div>
+
+        <div className="feature-grid">
+          <article className="feature-card">
+            <div className="feature-icon">▶</div>
+            <h3>Streaming</h3>
+            <p>Conteúdo ao vivo, competitivo e com presença forte.</p>
+          </article>
+
+          <article className="feature-card">
+            <div className="feature-icon">⚡</div>
+            <h3>Esports</h3>
+            <p>Foco em competições, performance e cenário CS2.</p>
+          </article>
+
+          <article className="feature-card">
+            <div className="feature-icon">🎮</div>
+            <h3>Caster</h3>
+            <p>Comunicação clara, energia e análise do jogo.</p>
+          </article>
+
+          <article className="feature-card">
+            <div className="feature-icon">↗</div>
+            <h3>Conteúdo</h3>
+            <p>Produção digital para reforçar a marca e criar comunidade.</p>
+          </article>
+        </div>
+      </section>
+    </>
+  );
+}
+
